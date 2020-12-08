@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if form.errors %}
+        <p class="mb-5 col-6 text-danger">Ошибка формата даты и времени!</p>
+    {% endif %}
+
+    <form class="col-6" action="" method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.date_start.label }}
+            {% if form.errors.date_start %}
+                {{ form.date_start(class="form-control border-danger") }} 
+            {% else %}
+                {{ form.date_start(class="form-control") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.date_stop.label }}
+            {% if form.errors.date_stop %}
+                {{ form.date_stop(class="form-control border-danger") }} 
+            {% else %}
+                {{ form.date_stop(class="form-control") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.subj.label }}
+            {{ form.subj(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.description.label }}
+            {{ form.description(class="form-control", rows="5") }}
+        </div>
+        {% if error %}
+            <p class="mt-5 text-danger">{{ error }}</p>
+        {% else %}
+            {% if edit %}
+                <div class="form-group mt-5 justify-content-around row">
+                    <a class="btn btn-danger form-control col-5" href='/delete_message/{{ edit }}'>Удалить</a>
+                    {{ form.submit(class="btn btn-info form-control col-5") }}
+                </div>
+            {% else %}
+                <div class="form-group mt-5">
+                    {{ form.submit(class="btn btn-info form-control") }}
+                </div>
+            {% endif %}
+        {% endif %}
+    </form>
+
+{% endblock %}

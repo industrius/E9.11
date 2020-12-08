@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>{{ title }}</title>
+</head>
+<body class="text-muted">
+    <div class="container">
+        <div class="row bg-dark justify-content-between align-content-center">
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link text-light" href="{{ url_for('index') }}">Список сообщений</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="{{ url_for('new_message') }}">Новое сообщение</a></li>
+            </ul>
+
+            {% if current_user.username %}
+                <p class="bg-info text-white py-2 px-4 m-0">{{ current_user.username }}</p>
+            {% endif %}
+            
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link text-light" href="{{ url_for('register') }}">Регистрация</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="{{ url_for('login') }}">Авторизация</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="{{ url_for('logout') }}">Выход</a></li>
+            </ul>
+        </div>
+        <h1 class="mt-2">SkillFactory: E9.11 Многопользовательский сервис планирования событий</h1>
+        <hr>
+        <h2 class="my-5 col-6">{{ title }}</h2>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
